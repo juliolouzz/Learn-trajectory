@@ -1,0 +1,65 @@
+<%- include('partials/header.ejs') %>
+
+<div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalSheet">
+  <div class="" role="document">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-header border-bottom-0">
+        <h1 class="modal-title fs-5">Blog Post</h1>
+      </div>
+      <div class="modal-body py-0">
+      </div>
+      <div class="form-group">
+        <label for="Textarea1" id="Textarea1">Write your Name, Title and Post!!!</label>
+        <form action="/submit" method="POST">
+          <div class="form-group row">           
+            <div class="col-sm-10">
+              <input type="text" name="blogname" class="form-control" id="inputEmail3" placeholder="Your Name">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-10">
+              <input type="text" name="blogtitle" class="form-control" id="inputPassword3" placeholder="Title">
+            </div>
+          </div>
+        
+          <textarea type="text" name="blogtext" class="form-control" id="textArea" rows="6" placeholder="Write your post here!"></textarea>
+          <div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
+          <button type="submit" class="btn btn-lg btn-primary">Post</button>
+        </div>
+        </form>
+      </div>
+    
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+<!---Inside this <div>, there's an EJS 'if' statement that checks if blogData exists and if it has more than 0 elements. blogData is expected to be 
+  an array of blog post objects. If blogData is null or an empty array, the code inside the 'if' statement won't execute, and no blog posts will be displayed.
+
+If blogData does exist and contains one or more elements, the code inside the 'if' statement will execute. This code includes an EJS 'forEach' 
+loop that iterates over each element in the blogData array. For each element (which we're calling blogPost), it creates a new <div> that represents a 
+single blog post.
+
+Inside the blog post <div>, there are several elements that display the title, author, and text of the blog post. The <h1> tag displays the blog 
+post's title, the <h5> tag displays the author's name, and the <p> tag displays the blog post's text. The EJS tags are used to output the values 
+of blogPost.blogtitle, blogPost.blogname, and blogPost.blogtext into the HTML. --->
+
+<div class="p-5 mb-4 bg-body-tertiary rounded-3">
+  <% if (blogData && blogData.length > 0) { %>
+    <% blogData.forEach((blogPost, index) => { %>
+      <div class="container-fluid py-5">
+        <h1 class="fw-bold"><%= blogPost.blogtitle %></h1>
+        <h5 class="fs-4">by: <%= blogPost.blogname %></h5>
+        <p class="col-md-8 fs-4"><%= blogPost.blogtext %></p>
+
+        <!-- Form for delete button -->
+        <form action="/delete/<%= index %>" method="POST">
+          <button class="btn btn-danger btn-lg" type="submit">Delete</button>
+        </form>
+      </div>
+    <% }); %>
+  <% } %>
+</div>
+<%- include('partials/footer.ejs') %>

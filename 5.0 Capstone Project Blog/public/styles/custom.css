@@ -1,0 +1,34 @@
+.form-control {
+  margin-left: auto ;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 90%;
+}
+
+#Textarea1 {
+  display: block;
+  text-align: center;
+}
+
+.modal-header {
+  justify-content: center; 
+}
+
+.row {
+  width: 122.5%;
+}
+
+.btn-primary{
+  width: 92.5%;
+  margin-left: auto ;
+  margin-right: auto;
+}
+
+.images {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
